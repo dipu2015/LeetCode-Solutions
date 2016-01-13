@@ -39,13 +39,12 @@ public class Solution {
         // Simple DP solution
         if (nums.length == 0)
             return 0;
-        int local = nums[0];
-        int global = nums[0];
+        int max = nums[0];
+        int localMax = nums[0];
         for (int i=1; i<nums.length; i++) {
-            local = Math.max(local + nums[i], nums[i]);
-            if (local > global)
-                global = local;
+            localMax = Math.max(nums[i], localMax + nums[i]);
+            max = Math.max(max, localMax);
         }
-        return global;
+        return max;
     }
 }
