@@ -14,6 +14,30 @@ A solution set is:
 */
 
 public class Solution {
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    List<Integer> path = new ArrayList<Integer>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        dfsHelper(candidates, target);
+        return result;
+    }
+    private void dfsHelper(int[] candidates, int target) {
+        if (target < 0)
+            return;
+        else if (target == 0) {
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        for (int n : candidates) {
+            if (path.size() > 0 && n < path.get(path.size()-1))
+                continue;
+            path.add(n);
+            dfsHelper(candidates, target - n);
+            path.remove(path.size() - 1);
+        }
+    }
+}
+
+/*public class Solution {
 
     List<List<Integer>> result = new ArrayList<List<Integer>>();
     List<Integer> path = new ArrayList<Integer>();
@@ -46,3 +70,4 @@ public class Solution {
         }
     }    
 }
+*/
